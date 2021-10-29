@@ -1,0 +1,260 @@
+{VERSION 4 0 "IBM INTEL NT" "4.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 0 1 0 0 0 0 0 0 2 0 0 0 0 
+0 0 1 }{CSTYLE "2D Output" 2 20 "" 0 1 0 0 255 1 0 0 0 0 0 0 0 0 0 1 }
+{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 0 0 0 0 
+0 0 1 }0 0 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }{PSTYLE "Text Output" -1 2 1 
+{CSTYLE "" -1 -1 "Courier" 1 10 0 0 255 1 0 0 0 0 0 1 3 0 0 1 }1 0 0 
+-1 -1 -1 0 0 0 0 0 0 -1 0 }{PSTYLE "Warning" 2 7 1 {CSTYLE "" -1 -1 "
+" 0 1 0 0 255 1 0 0 0 0 0 0 1 0 0 1 }0 0 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }
+{PSTYLE "Diagnostic" 7 9 1 {CSTYLE "" -1 -1 "" 0 1 64 128 64 1 0 0 0 
+0 0 0 0 0 0 1 }0 0 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }{PSTYLE "Maple Output
+" 0 11 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 }3 3 0 
+-1 -1 -1 0 0 0 0 0 0 -1 0 }{PSTYLE "R3 Font 0" -1 256 1 {CSTYLE "" -1 
+-1 "Helvetica" 0 14 0 0 0 0 2 1 2 0 0 0 0 0 0 1 }0 0 0 -1 -1 -1 0 0 0 
+0 0 0 0 0 }{PSTYLE "R3 Font 2" -1 257 1 {CSTYLE "" -1 -1 "Courier" 0 
+14 0 0 0 0 2 2 2 0 0 0 0 0 0 1 }0 0 0 -1 -1 -1 0 0 0 0 0 0 0 0 }
+{PSTYLE "R3 Font 3" -1 258 1 {CSTYLE "" -1 -1 "New century schoolbook
+" 0 17 0 0 0 0 2 1 2 0 0 0 0 0 0 1 }0 0 0 -1 -1 -1 0 0 0 0 0 0 0 0 }}
+{SECT 0 {EXCHG {PARA 258 "" 0 "" {TEXT -1 23 "The Euclidean Algorithm
+" }}{PARA 0 "" 0 "" {TEXT -1 38 "\nMichael Monagan, monagan@inf.ethz.c
+h\n" }}{PARA 0 "" 0 "" {TEXT -1 373 "This worksheet  is intended to sh
+ow two things, firstly, how to write simple programs in Maple, and sec
+ondly, a expository study of Euclid's algorithm and how to compute the
+ greatest common divisor of two integers a and b.\nFirst, what is the \+
+greatest common divisor of two integers and why is this calculation im
+portant?  Consider the following calculation that Maple does\n" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 9 " 64 / 20;" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6##\"#;\"\"&" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 349 "Map
+le has simplified the fraction  64/20  by computing the largest intege
+r g that divides both the numerator 64 and the denominator 20, and can
+celled  it out.  In this example, g = 4.  g is the greatest common div
+isor or Gcd.  One way to compute the Gcd of two integers is to simply \+
+to factor them and look for all the common divisors.  For example\n" }
+}{PARA 0 "> " 0 "" {MPLTEXT 1 0 19 "64 = ifactor( 64 );" }}{PARA 11 "
+" 1 "" {XPPMATH 20 "6#/\"#k*$)-%!G6#\"\"#\"\"'\"\"\"" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 19 "20 = ifactor( 20 );" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#/\"#?*&)-%!G6#\"\"#F*\"\"\"-F(6#\"\"&F+" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT -1 873 "\nIt is obvious from the factorizations \+
+that the Gcd(64,20) = 2^2 = 4.  Unfortunately, this is a real dumb way
+ to compute the Gcd because integer factorization is horribly expensiv
+e when you have bigger numbers.  These days, the fastest computers usi
+ng the best known  methods can only factor numbers of about 100 digits
+.  But we will give an algorithm here that can compute the Gcd of two \+
+integers of tens of thousands of digits quite quickly, even on your co
+mputer.\n\nEuclid's algorithm dates back to approximately 300 BC and i
+s perhaps the oldest algorithm in Mathematics.  Euclid did not have a \+
+programming language in which to describe his algorithm.  He described
+ it in about a page of  Greek text.  I hope that what follows is not G
+reek to you!  The algorithm is really simple.  It assumes that the fol
+lowing statements are true.  Let a and b be nonnegative integers.\n" }
+}{PARA 0 "> " 0 "" {MPLTEXT 1 0 13 "Gcd(a,0) = a;" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#/-%$GcdG6$%\"aG\"\"!F'" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 20 "Gcd(a,b) = Gcd(b,a);" }}{PARA 11 "" 1 "" {XPPMATH 20 
+"6#/-%$GcdG6$%\"aG%\"bG-F%6$F(F'" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 22 "Gcd(a,b) = Gcd(a-b,b);" }}{PARA 11 "" 1 "" {XPPMATH 
+20 "6#/-%$GcdG6$%\"aG%\"bG-F%6$,&F'\"\"\"F(!\"\"F(" }}}{EXCHG {PARA 0 
+"" 0 "" {TEXT -1 835 "\nThe first two I hope you believe.  The last on
+e needs a little proof.  Let  g = Gcd(a,b)  and  h = Gcd(a-b,b).  The \+
+proof goes in two steps.  First we show that g divides h.  Then we sho
+w that h divides g.  If that true, then g must be equal to h.  In the \+
+proof we use the symbol | as shorthand for ``divides''.\n\n(i) (Show g
+ | h).  g = Gcd(a,b) by definition therefore g divides a and b.  Consi
+der a-b.  If g | a and g | b then we can write\n\n     a - b  =  g*(a/
+g) - g*(b/g)  =  g*(a'-b')\n\ni.e. g | a-b.  But if g|b and g|(a-b) th
+en g is a COMMON divisor of a-b and b.  Therefore g must divide the Gc
+d(a-b,b).  Therefore g | h because h is the GREATEST common divisor of
+ a-b and b.\n\n(ii) (Show h | g).  h = Gcd(a-b,b) hence h | a-b and h \+
+| b.  Therefore h must also divide a.  Therefore h is a COMMON divisor
+ of a and b hence h | g.\n " }}{PARA 0 "" 0 "" {TEXT -1 372 "Now, Eucl
+id's algorithm is based on this fact that Gcd(a,b) = Gcd(a-b,b).  If  \+
+a >= b, then we want to use this theorem to reduce the size of the int
+eger a.  If a < b, since Gcd(a,b) = Gcd(b,a), we just interchange a an
+d b.  Keep doing this until one of a or b become 0.  Then we stop beca
+use Gcd(a,0) = a.  This algorithm is most easily expressed recursively
+ as follows:\n" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 102 "GCD := proc(a,b)
+\n if b = 0 then \n   a;\n elif a < b then \n   GCD(b,a);\n else GCD(a
+-b, b);\n end if;\nend:" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 52 "\nLet'
+s see the algorithm work on a = 64 and b = 20.\n" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 12 "GCD(64, 20);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"\"%
+" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 140 "\nNow I'm just going to tell
+ Maple to print out what is happening when the Gcd program is executed
+ so you can see the computation occuring. \n" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 19 "printlevel := 1000;" }}{PARA 11 "" 1 "" {XPPMATH 20 "
+6#>%+printlevelG\"%+5" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 11 "GC
+D(64,20);" }}{PARA 9 "" 1 "" {TEXT -1 29 "\{--> enter GCD, args = 64, \+
+20" }}{PARA 9 "" 1 "" {TEXT -1 29 "\{--> enter GCD, args = 44, 20" }}
+{PARA 9 "" 1 "" {TEXT -1 29 "\{--> enter GCD, args = 24, 20" }}{PARA 
+9 "" 1 "" {TEXT -1 28 "\{--> enter GCD, args = 4, 20" }}{PARA 9 "" 1 "
+" {TEXT -1 28 "\{--> enter GCD, args = 20, 4" }}{PARA 9 "" 1 "" {TEXT 
+-1 28 "\{--> enter GCD, args = 16, 4" }}{PARA 9 "" 1 "" {TEXT -1 28 "
+\{--> enter GCD, args = 12, 4" }}{PARA 9 "" 1 "" {TEXT -1 27 "\{--> en
+ter GCD, args = 8, 4" }}{PARA 9 "" 1 "" {TEXT -1 27 "\{--> enter GCD, \+
+args = 4, 4" }}{PARA 9 "" 1 "" {TEXT -1 27 "\{--> enter GCD, args = 0,
+ 4" }}{PARA 9 "" 1 "" {TEXT -1 27 "\{--> enter GCD, args = 4, 0" }}
+{PARA 9 "" 1 "" {TEXT -1 30 "<-- exit GCD (now in GCD) = 4\}" }}{PARA 
+9 "" 1 "" {TEXT -1 30 "<-- exit GCD (now in GCD) = 4\}" }}{PARA 9 "" 
+1 "" {TEXT -1 30 "<-- exit GCD (now in GCD) = 4\}" }}{PARA 9 "" 1 "" 
+{TEXT -1 30 "<-- exit GCD (now in GCD) = 4\}" }}{PARA 9 "" 1 "" {TEXT 
+-1 30 "<-- exit GCD (now in GCD) = 4\}" }}{PARA 9 "" 1 "" {TEXT -1 30 
+"<-- exit GCD (now in GCD) = 4\}" }}{PARA 9 "" 1 "" {TEXT -1 30 "<-- e
+xit GCD (now in GCD) = 4\}" }}{PARA 9 "" 1 "" {TEXT -1 30 "<-- exit GC
+D (now in GCD) = 4\}" }}{PARA 9 "" 1 "" {TEXT -1 30 "<-- exit GCD (now
+ in GCD) = 4\}" }}{PARA 9 "" 1 "" {TEXT -1 30 "<-- exit GCD (now in GC
+D) = 4\}" }}{PARA 9 "" 1 "" {TEXT -1 36 "<-- exit GCD (now at top leve
+l) = 4\}" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"\"%" }}}{EXCHG {PARA 0 "
+" 0 "" {TEXT -1 178 "\nThere are some things we'd like to do to correc
+t and simplify our Maple code here.  We should check that the inputs a
+ and b are nonnegative integers.  This can be done this way\n" }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 151 "GCD := proc(a::nonnegint, b::nonne
+gint)\n     if b = 0 then \n       a;\n     elif a < b then \n       G
+CD(b, a);\n     else GCD(a - b, b)\n     end if;\nend:" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 16 "printlevel := 1;" }}{PARA 11 "" 1 "
+" {XPPMATH 20 "6#>%+printlevelG\"\"\"" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 14 "GCD( 64, 20 );" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"
+\"%" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 854 "\nThe efficiency of the a
+lgorithm now needs to be improved.  Think about how long the algorithm
+ will take if we give it the numbers a = 10^10 and b = 10.  What will \+
+happen?  It will repeatedly subtract 10 from 10^10 until it gets to 0.
+  This will take 10^10 steps which will take a very long time.  Don't \+
+try it.  What the algorithm really does is keep on subtracting b from \+
+a until a < b.  In other words, it computes the remainder of a divided
+ by b.  We can do this repeated subraction more efficiently by computi
+ng one long integer division.  In Maple the functions irem and iquo co
+mpute the remainder r and the quotient q of  a divided by b such that \+
+a = b*q + r and r < b .  So instead of using the theorem Gcd(a,b) = Gc
+d(a-b,b) we can use the theorem Gcd(a,b) = Gcd(irem(a,b),b) and get a \+
+much more efficient version of Euclid's algorithm.  Namely\n " }}
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 153 "GCD := proc(a::nonnegint, b::nonne
+gint)\n    if b = 0 then \n      a;\n    elif a < b then \n      GCD(b
+, a);\n    else GCD( irem(a, b), b );\n    end if;\nend:" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 17 "GCD( 10^10, 10 );" }}{PARA 11 "" 1 
+"" {XPPMATH 20 "6#\"#5" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 30 "G
+CD( 1234567890, 9876543210 );" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"#!*
+" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 237 "\nIt turns out that Maple us
+es Euclid's algorithm almost exactly as we have described it.  The pro
+gram is not recursive though.  It is programmed in a while loop.  So h
+ere is another version of Euclid's algorithm which uses a while loop.
+\n" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 155 "GCD := proc(a,b) local c,d,r
+;\n     c := a; d := b;\n     while d > 0 do   \n       r := irem(c,d)
+;  \n       c := d; \n       d := r;\n     end do;\n     c;\nend:" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 14 "GCD( 64, 20 );" }}{PARA 11 "
+" 1 "" {XPPMATH 20 "6#\"\"%" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 1511 "
+\nA computer scientist would be interested in how efficient this algor
+ithm really is.  How many steps does it take and what is the total cos
+t?  In computer science, we have developed a methodology for talking a
+bout the efficiency of an algorithm that is independent of the particu
+lar computer and independent of the programming language.  The idea is
+ to measure the number of ``atomic'' operations, i.e. operations which
+ take a constant (bounded) amount of time.  In our case, the inputs a,
+ and b are integers. Let us suppose that a and b have <= n decimal dig
+its.  What we would like is a count on the number of operations as a f
+unction of n.  Euclid's algorithm turns out to be an O(n^2) algorithm.
+  Thsi means that the number of operations is < c*n^2 for some constan
+t c.  What this means in practice is that as the size of the numbers a
+ and b increases, the number of operations in Euclid's algorithm grows
+ quadratically.  So if the size of the numbers doubles, the number of \+
+operations taken will go up by a factor of 4.  This is quite a good al
+gorithm.  It is the same cost as using the highschool method for multi
+plying two integers -which is what Maple uses.  For the interested rea
+der who wants to know where the figure O(n^2) for Euclids algorithm co
+mes from, we refer the reader to the non-trivial analysis in Knuth, Th
+e Art of Computer Programming: Vol II Seminumerical Algorithms.  It tu
+rns out that the ``worst case'' of Euclides algorithm is related to th
+e Fibonacci numbers Fn.  I.e. the numbers\n" }}{PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 25 "F := combinat[fibonacci]:" }}}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 21 "seq( F(i), i=0..10 );" }}{PARA 11 "" 1 "" {XPPMATH 
+20 "6-\"\"!\"\"\"F$\"\"#\"\"$\"\"&\"\")\"#8\"#@\"#M\"#b" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT -1 251 "\nThese numbers are a worst case because
+ if we try to compute Gcd(F(n),F(n-1) ) we will have to compute the Gc
+d(F(n-1),F(n-2))  and hence end up computing all the Fibonacci numbers
+ in reverse order.  Let's see that by tracing our latest version of GC
+D\n" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 19 "printlevel := 1000;" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%+printlevelG\"%+5" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 14 "GCD( 55, 34 );" }}{PARA 9 "" 1 "" {TEXT 
+-1 29 "\{--> enter GCD, args = 55, 34" }}{PARA 11 "" 1 "" {XPPMATH 20 
+"6#>%\"cG\"#b" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"dG\"#M" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#>%\"rG\"#@" }}{PARA 11 "" 1 "" {XPPMATH 20 "
+6#>%\"cG\"#M" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"dG\"#@" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#>%\"rG\"#8" }}{PARA 11 "" 1 "" {XPPMATH 20 "
+6#>%\"cG\"#@" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"dG\"#8" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#>%\"rG\"\")" }}{PARA 11 "" 1 "" {XPPMATH 20 
+"6#>%\"cG\"#8" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"dG\"\")" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#>%\"rG\"\"&" }}{PARA 11 "" 1 "" {XPPMATH 20 
+"6#>%\"cG\"\")" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"dG\"\"&" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"rG\"\"$" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%\"cG\"\"&" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"dG\"
+\"$" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"rG\"\"#" }}{PARA 11 "" 1 "
+" {XPPMATH 20 "6#>%\"cG\"\"$" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"dG
+\"\"#" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"rG\"\"\"" }}{PARA 11 "" 
+1 "" {XPPMATH 20 "6#>%\"cG\"\"#" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%
+\"dG\"\"\"" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"rG\"\"!" }}{PARA 11 
+"" 1 "" {XPPMATH 20 "6#>%\"cG\"\"\"" }}{PARA 11 "" 1 "" {XPPMATH 20 "6
+#>%\"dG\"\"!" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"\"\"" }}{PARA 9 "" 
+1 "" {TEXT -1 36 "<-- exit GCD (now at top level) = 1\}" }}{PARA 11 "
+" 1 "" {XPPMATH 20 "6#\"\"\"" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 16 "printlevel := 1;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%+printleve
+lG\"\"\"" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 1135 "\nA natural questio
+n to ask is: can the Gcd of two integers of size <= n digits in length
+ be computed in significantly fewer operations than O(n^2)?  Can it be
+ computed in say only O(n) a linear number of operations.  We can add \+
+two integers in O(n) operations.  What about Gcd's?  Well, the answer \+
+is yes.  We can compute the Gcd of two integers faster than O(n^2) but
+ not as fast as O(n).  See Knuth for a historical development.  We wan
+t to conclude this worksheet by studying a different method that is pa
+rticularly suited to computers.  It is called the ``Binary Gcd Algorit
+hm''.  Like Euclid's algorithm, it is an O(n^2) method, so as the size
+ of the integers a and b increase, the cost of this method will grow q
+uadratically.  The advantage of this method is that if the numbers a a
+nd b are represented in a binary base B = 2^m for some m, then certain
+ operations can be done faster.  The overall running time will be fast
+er by a constant factor.  If the implementation is good, perhaps by a \+
+factor of 2.  The algorithm is like Euclid's algorithm:  very simple. \+
+ It rely's on the same three observations of Euclid plus this one.\n" 
+}}{PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "Gcd(2*a,2*b) = 2*Gcd(a,b);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#/-%$GcdG6$,$%\"aG\"\"#,$%\"bGF),$-F%6$
+F(F+F)" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 381 "\nand the fact that th
+e Gcd of two odd integers must be odd and the difference of two odd in
+tegers is even.  The algorithm begins by writing a = 2^i*a' and b = 2^
+j*b' such that a' and b' are now odd.  Hence Gcd(a,b) = 2^min(i,j) * G
+cd(a',b'). Determining i and j and dividing out by 2^i and 2^j is very
+ easy if your integers are represented in a binary base.  Here is the \+
+algorithm\n" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 432 "GCD := proc(a::nonn
+egint,b::nonnegint) \n  local c,d,i,j;\n        if b = 0 then \n      \+
+    a;\n        elif a = 0 then \n          b;\n        elif irem(a, 2
+)=0 and irem(b, 2)=0 then\n          2*GCD(iquo(a, 2),iquo(b, 2));\n  \+
+      elif irem(a, 2)=0 then \n          GCD(iquo(a, 2),b);\n        e
+lif irem(b,2)=0 then \n          GCD(a, iquo(b, 2));\n        elif a <
+ b then \n          GCD(b, a);\n        else GCD(a-b, b)\n        end \+
+if;\nend:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 16 "GCD(3*64,3*4*5
+);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"#7" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT -1 336 "\nNow this routine is faster than the original version o
+f Euclid's algorithm that we showed because in two steps it divides at
+ least one of the numbers by 2.  This is because if both a and b are o
+dd, after doing a subtraction, it can divide by 2.  Our implementation
+ in Maple needs some improving.  Here it is as an iterative procedure.
+\n" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 823 "GCD := proc(a::nonnegint,b::
+nonnegint) \n  local c, d, i, j, t;\n        if b = 0 then \n         \+
+ a;\n        elif a = 0 then \n          b;\n        end if;\n\n      \+
+  c := a; d := b;\n\n        for i from 0 while irem(c,2)=0 do \n     \+
+     c := iquo(c,2);\n        end do;\n\n        for j from 0 while ir
+em(d,2)=0 do \n          d := iquo(d,2);\n        end do;\n\n        i
+f c < d then \n          t := c; c := d; d := t;\n        end if;\n   \+
+     do        # Loop invariant c >= d and c,d are both odd           \+
+  \n             if c = d then\n               2^min(i,j)*c ;\n       \+
+      end if;\n\n             c := c-d;\n\n             while irem(c,2
+)=0 do \n               c := iquo(c,2);\n             end do;\n\n     \+
+        if c < d then \n               t := c; c := d; d := t;\n      \+
+       end if;\n        end do;\n        2^min(i,j) * c;\nend:" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT -1 549 "\nThe progam has become trickier.
+  And it is trickier to prove that it is correct.  You'll notice that \+
+I've included a comment on the loop do ... od.  The comment says that \+
+at the beginning of the loop the condition c >= d is supposed to alway
+s hold and both c,d are odd.  This is called a loop invariant and such
+ a thing is the key to proving a program with a loop correct.  Can you
+ argue that this program is really correct?\n\nFinding out the cost of
+ this program is much easier than Euclid's algorithm.  Can you argue t
+hat the algorithm is O(n^2)?\n" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" 
+}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 0 "" }}}}{MARK "26 1 0" 690 }{VIEWOPTS 1 1 0 1 1 
+1803 1 1 1 1 }{PAGENUMBERS 0 1 2 33 1 1 }
